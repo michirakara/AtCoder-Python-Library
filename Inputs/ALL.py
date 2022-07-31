@@ -24,6 +24,10 @@ def ILTD(col):
 def SLH():
   return input().split()
 
+#n行の文字列の配列を受け取るよ
+def SLV(n):
+  return [input() for i in range(n)]
+
 #str_i int_iの形の入力を受け取るよ
 def ISL(n):
   l=[]*n
