@@ -1,12 +1,15 @@
 #とりあえずこれをコピペしたら大丈夫だね
 
+import sys
+input=sys.stdin.readline
+
 #一つの整数を受け取るよ
 def Int():
   return int(input())
 
 #文字列を受け取るよ(普通に入力した方がはやいね)
 def Str():
-  return input()
+  return input().rstrip()
 
 #スペース区切りで横に並んだ整数の配列を受け取るよ
 def ILH():
@@ -26,7 +29,7 @@ def SLH():
 
 #n行の文字列の配列を受け取るよ
 def SLV(n):
-  return [input() for i in range(n)]
+  return [input().rstrip() for i in range(n)]
 
 #str_i int_iの形の入力を受け取るよ
 def ISL(n):
