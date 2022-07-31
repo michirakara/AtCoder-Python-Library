@@ -1,3 +1,3 @@
 #一つの整数を受け取るよ
-def int_in():
+def Int():
   return int(input())
