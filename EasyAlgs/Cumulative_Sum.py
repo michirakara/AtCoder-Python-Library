@@ -1,7 +1,16 @@
-#与えられたリストの累積和のリストを返すよ
-def Cum_Sum(l):
-  ret=[0]*len(l)
-  ret[0]=l[0]
-  for i in range(1,len(l)):
-    ret[i]=l[i]+ret[i-1]
-  return ret
+#リストを入れるよ
+#fold(r)でtable[0,r)の累積和
+#fold_(l,r)でtable[l,r)の累積和
+class CumulativeSum:
+  def __init__(self,table):
+    self.table=table
+    for i in range(1,len(self.table)):
+      self.table[i]+=self.table[i-1]
+  
+  def fold(self,r:int):
+    if r<0:
+      return 0
+    return self.table[r-1]
+  
+  def fold_(self,l:int,r:int):
+    return self.fold(r)-self.fold(l)
