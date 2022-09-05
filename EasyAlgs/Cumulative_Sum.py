@@ -3,7 +3,7 @@
 #fold_(l,r)でtable[l,r)の累積和
 class CumulativeSum:
   def __init__(self,table):
-    self.table=table
+    self.table=table.copy()
     for i in range(1,len(self.table)):
       self.table[i]+=self.table[i-1]
   
