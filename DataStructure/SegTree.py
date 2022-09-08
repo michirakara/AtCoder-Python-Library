@@ -1,7 +1,6 @@
 #セグ木だよ
 from pyclbr import Function
 
-
 class SegTree:
   def __init__(self,l:list,func:Function,id_el):
     #初期化
@@ -20,7 +19,7 @@ class SegTree:
     k+=self.n
     self.dat[k]=x
     while k>1:
-      self.dat[k>>1]=self.func(self.dat[k],self.tree[k^1])
+      self.dat[k>>1]=self.func(self.dat[k],self.dat[k^1])
       k>>=1
   
   def query(self,l:int,r:int):
@@ -41,4 +40,3 @@ class SegTree:
 def func(x,y):
   #随時変更エリア
   return min(x,y)
-  #<-ここまで->
