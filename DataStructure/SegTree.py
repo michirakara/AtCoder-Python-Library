@@ -14,6 +14,9 @@ class SegTree:
     for i in range(self.n-1,0,-1):
       self.dat[i]=self.func(self.dat[2*i],self.dat[2*i+1])
   
+  def get(self,ind):
+    return self.dat[self.n+ind]
+
   def update(self,k,x):
     #l[k]をxにする
     k+=self.n
