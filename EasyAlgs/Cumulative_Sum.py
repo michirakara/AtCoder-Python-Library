@@ -13,4 +13,6 @@ class CumulativeSum:
     return self.table[r-1]
   
   def fold_(self,l:int,r:int):
+    if l==0:
+      return self.fold(r)
     return self.fold(r)-self.fold(l)
