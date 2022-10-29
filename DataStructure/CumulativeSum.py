@@ -8,7 +8,7 @@ class CumulativeSum:
       self.table[i]+=self.table[i-1]
   
   def fold(self,r:int):
-    if r<0:
+    if r<=0:
       return 0
     return self.table[r-1]
   
