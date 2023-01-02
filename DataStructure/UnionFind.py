@@ -3,6 +3,7 @@ class UnionFind:
   def __init__(self,n):
     self.n=n
     self.par=[-1]*n
+    self.groups=n
   
   def find(self,x):
     if self.par[x]<0:
@@ -19,6 +20,7 @@ class UnionFind:
       x,y=y,x
     self.par[x]+=self.par[y]
     self.par[y]=x
+    self.groups-=1
   
   def size(self,x):
     return -self.par[self.find(x)]
@@ -34,7 +36,7 @@ class UnionFind:
     return [i for i,x in enumerate(self.par) if x<0]
   
   def grp_cnt(self):
-    return len(self.roots())
+    return self.groups
   
   def grp_mem(self):
     grp=defaultdict(list)
