@@ -1,2 +1,3 @@
 # AtCoder-Python-Library
-Python使う人用のライブラリです。まだまだいろいろ足りないので気が向いたら更新します
+がんばります
+[![Actions Status](https://github.com/michirakara/AtCoder-Python-Library/workflows/verify/badge.svg)](https://github.com/michirakara/AtCoder-Python-Library/actions)
