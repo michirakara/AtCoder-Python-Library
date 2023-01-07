@@ -4,7 +4,7 @@ def GCD(a, b):
     return a
 
 
-def rho_algorithm(n, a=1, x0=2):
+def rho_algorithm(n, a=1, x0):
     f = lambda x: (x * x + a) % n
     x = y = ys = x0
     r = 1
