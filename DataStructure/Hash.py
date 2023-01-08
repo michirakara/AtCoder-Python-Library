@@ -1,11 +1,11 @@
 class Hash:
-    def __init__(self, s: str, mod):
+    def __init__(self, s: str, base, mod):
         self.mod = mod
         self.l = [0] * len(s)
         self.p = [1] * len(s)
         for i in range(len(s)):
-            self.p[i] = (self.p[i - 1] * 27) % self.mod
-            self.l[i] = (self.l[i - 1] * 27 + (ord(s[i]) - 96)) % self.mod
+            self.p[i] = (self.p[i - 1] * base) % self.mod
+            self.l[i] = (self.l[i - 1] * base + (ord(s[i]) - 96)) % self.mod
         self.l.append(0)
 
     def hash(self, l, r):
