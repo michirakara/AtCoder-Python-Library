@@ -10,5 +10,4 @@ class Hash:
 
     def hash(self, l, r):
         # [l,r)
-        return self.l[r - 1] - self.l[l - 1] * self.p[r - l - 1]
-      
+        return (self.l[r - 1] - self.l[l - 1] * self.p[r - l - 1]) % self.mod
