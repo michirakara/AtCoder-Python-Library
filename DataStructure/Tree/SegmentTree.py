@@ -15,7 +15,11 @@ class SegTree:
         for i in range(self.n - 1, 0, -1):
             self.dat[i] = self.func(self.dat[2 * i], self.dat[2 * i + 1])
 
+    def __getitem__(self, ind):
+        return self.dat[self.n + ind]
+    
     def get(self, ind):
+        #上と同じ
         return self.dat[self.n + ind]
 
     def update(self, k, x):
