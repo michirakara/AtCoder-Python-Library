@@ -5,10 +5,10 @@ class BIT:
         self.tree = [0] * (n + 1)
 
     def sum_(self, r):
+        # [0,r)
         if r == 0:
             return 0
         s = 0
-        r += 1
         while r > 0:
             s += self.tree[r]
             r -= r & -r
