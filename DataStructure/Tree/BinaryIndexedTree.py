@@ -4,7 +4,12 @@ class BIT:
         self.size = n
         self.tree = [0] * (n + 1)
         if l:
-            for i,j in enumerate(l):self.add(i,j)
+            self.tree = [0] + l[:]
+            c = [0] * (n + 1)
+            for i, j in enumerate(l, 1):
+                c[i] = j + c[i - 1]
+            for x in range(1, n + 1):
+                self.tree[x] = c[x] - c[x - (x & -x)]
 
     def sum_(self, r):
         # [0,r)
