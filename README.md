@@ -1,2 +1,3 @@
 # AtCoder-Python-Library
-がんばります
+がんばります  
+プルリクなど気軽にどうぞ
