@@ -1,8 +1,10 @@
 class BIT:
     # 0-indexed
-    def __init__(self, n):
+    def __init__(self, n, l=[]):
         self.size = n
         self.tree = [0] * (n + 1)
+        if l:
+            for i,j in enumerate(l):self.add(i,j)
 
     def sum_(self, r):
         # [0,r)
