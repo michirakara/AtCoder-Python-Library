@@ -11,13 +11,21 @@ class TreapNode:
         self.sum = data
 
 
+def count(t):
+    if not t:
+        return 0
+    return t.count
+
+
+def sum_(t):
+    if not t:
+        return 0
+    return t.sum
+
+
 def update(node):
-    if not node:
-        return None
-    l = lambda n: n.count if n else 0
-    node.count = l(node.left) + l(node.right) + 1
-    l = lambda n: n.sum if n else 0
-    node.sum = l(node.left) + l(node.right) + node.data
+    node.count = count(node.left) + count(node.right) + 1
+    node.sum = sum_(node.left) + sum_(node.right) + node.data
     return node
 
 
@@ -26,7 +34,7 @@ def rotate_right(node):
     node.left = lnode.right
     lnode.right = node
     update(node)
-    update(node.left)
+    update(lnode)
     return lnode
 
 
@@ -35,7 +43,7 @@ def rotate_left(node):
     node.right = rnode.left
     rnode.left = node
     update(node)
-    update(node.right)
+    update(rnode)
     return rnode
 
 
@@ -114,6 +122,18 @@ class Treap:
 
     def search(self, x):
         return search(self.root, x)
+
+    def __getitem__(self, ind):
+        node = self.root
+        ni = node.left.count if node.left else 0
+        while ni != ind:
+            if ni > ind:
+                node = node.left
+                ni -= node.right.count + 1 if node.right else 1
+            else:
+                node = node.right
+                ni += node.left.count + 1 if node.left else 1
+        return node.data
 
     def __str__(self):
         if self.root is None:
