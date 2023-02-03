@@ -91,14 +91,21 @@ def delete(node, x):
 
 
 def search(node, x):
+    ni = node.left.count if node.left else 0
     while node is not None:
         if x == node.data:
-            return True
+            return ni
         elif x < node.data:
             node = node.left
+            if node is None:
+                return -1
+            ni -= node.right.count + 1 if node.right else 1
         else:
             node = node.right
-    return False
+            if node is None:
+                return -1
+            ni += node.left.count + 1 if node.left else 1
+    return -1
 
 
 def traverse(node):
@@ -111,19 +118,31 @@ def traverse(node):
 
 
 class Treap:
-    def __init__(self):
+    def __init__(self, l=[]):
+        # 初期化したいリストを与えるとO(N log N)で初期化してくれます
         self.root = None
+        if l:
+            for i in l:
+                self.insert(i)
 
     def insert(self, x):
+        # xを挿入します O(logN)
         self.root = insert(self.root, x)
 
     def delete(self, x):
+        # xが存在する場合、xを削除します O(logN)
         self.root = delete(self.root, x)
 
-    def search(self, x):
+    def index(self, x):
+        # xが存在するならそのindexを、存在しないなら-1を返します O(logN)
         return search(self.root, x)
 
+    def __contains__(self, x):
+        # xが存在するかを t in x で判定できます
+        return search(self.root, x) != -1
+
     def __getitem__(self, ind):
+        # t[index]で配列のindex番目に大きい要素にアクセスできます O(logN)
         node = self.root
         ni = node.left.count if node.left else 0
         while ni != ind:
@@ -136,6 +155,7 @@ class Treap:
         return node.data
 
     def __str__(self):
+        # Treapをリスト形式で返します O(N)
         if self.root is None:
             return "Treap()"
         buff = "Treap("
