@@ -133,6 +133,30 @@ class Treap:
         # xが存在する場合、xを削除します O(logN)
         self.root = delete(self.root, x)
 
+    def sum(self, l, r):
+        # [l,r)の区間和を求めます
+        stack = [(self.root, self.root.left.count if self.root.left else 0)]
+        ret = 0
+        f = lambda n: n.count if n else 0
+        while stack:
+            look, ni = stack.pop()
+            if ni - f(look.left) >= l and ni + f(look.right) < r:
+                ret += look.sum
+            elif (
+                l > ni + f(look.right) >= ni - f(look.left)
+                or ni + f(look.right) >= ni - f(look.left) >= r
+            ):
+                pass
+            else:
+                if r > ni >= l:
+                    ret += look.data
+                if look.right:
+                    stack.append((look.right, ni + f(look.right.left) + 1))
+                if look.left:
+                    stack.append((look.left, ni - f(look.left.right) - 1))
+
+        return ret
+
     def index(self, x):
         # xが存在するならそのindexを、存在しないなら-1を返します O(logN)
         return search(self.root, x)
